@@ -14,7 +14,6 @@ import requests
 def read():
    fake_data_list_url = 'https://61004cc6bca46600171cf84a.mockapi.io/api-crud/v1/fakeData'
    response = requests.get(fake_data_list_url)
-
    return response.json()
 
 def preview(data):
@@ -43,5 +42,7 @@ if __name__ == '__main__':
        read()
    if args.preview:
        preview(read())
+   if args.save:
+       save
    else:
        print('Use the -h or --help flags for help')
