@@ -10,22 +10,23 @@ import csv
 import json
 from pprint import pprint
 import requests
-import sys
 
-def read(fake_data_list_url):
+def read(url):
    #fake_data_list_url = 'https://61004cc6bca46600171cf84a.mockapi.io/api-crud/v1/fakeData'
    #fake_data_list_url = 'https://qxo3mb6xaa.execute-api.us-east-2.amazonaws.com/latest/posts'
    #%fake_data_list_url = 'https://qxo3mb6xaa.execute-api.us-east-2.amazonaws.com/latest/users'
-   response = requests.get(fake_data_list_url)
+   response = requests.get(url)
    return response.json()
 
 def preview(data):
    pprint(data)
    
 def save(data):
-   with open('fake_data.csv', 'w') as f:
-       field_names = ['id', 'author', 'title']
-       writer = csv.DictWriter(f, fieldnames=field_names)
+   with open('fake_data_4.csv', 'w') as f:       
+       #field_names = ['id', 'author', 'title']
+       field_names = list(data[0].keys())
+       print("\n   field names  ", field_names)
+       writer = csv.DictWriter(f, field_names)
 
        writer.writeheader()
        for row in data:
