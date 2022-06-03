@@ -12,24 +12,41 @@ from pprint import pprint
 import requests
 
 def read(url):
-   #fake_data_list_url = 'https://61004cc6bca46600171cf84a.mockapi.io/api-crud/v1/fakeData'
-   #fake_data_list_url = 'https://qxo3mb6xaa.execute-api.us-east-2.amazonaws.com/latest/posts'
-   #%fake_data_list_url = 'https://qxo3mb6xaa.execute-api.us-east-2.amazonaws.com/latest/users'
    response = requests.get(url)
+   pprint(response.status_code)
+   pprint(response.text)
    return response.json()
 
 def preview(data):
    pprint(data)
    
 def save(data, file_name):
-   with open(file_name, 'w') as f:       
-       writer = csv.DictWriter(f, list(data[0].keys()))
+    file_extension = file_name[-4:].rstrip()
+    if file_extension == '.csv':
+        save_csv(data, file_name)
+    elif file_extension == '.txt':
+        save_txt(data, file_name)
 
-       writer.writeheader()
-       for row in data:
-           writer.writerow(row)
-           
-           
+            
+def save_csv(data, file_name):
+    with open(file_name, 'w') as f:  
+        writer = csv.DictWriter(f, list(data[0].keys()))    
+        writer.writeheader()
+        for row in data:
+            writer.writerow(row)
+
+def save_txt(data, file_name):
+    with open(file_name, 'w') as f:
+        f.write('[')
+        for row in data:
+            f.write('\n\t{\n')
+            for key, value in row.items():
+                f.write('\t%s: %s,\n' % (key, value))
+            f.write('\t},')
+        f.write('\n]')
+    
+    
+            
 if __name__ == '__main__':
    parser = ArgumentParser(description='A command line tool for interacting with our API')
    parser.add_argument('-r', '--read', action='store_true', help='Sends a GET request to the product API.')
@@ -38,15 +55,19 @@ if __name__ == '__main__':
    parser.add_argument('-u', '--url', action='store', help='URL passed as argument')
 
    args = parser.parse_args()
-   
+   data = []
    if args.url:
        print("\nUrl passed as command line argument: % s" % args.url)
    if args.read:
-       read(args.url)
+       data = read(args.url)
    if args.preview:
-       preview(read(args.url))
+       if len(data) == 0:
+           data = read(args.url)           
+       preview(data)
    if args.save:
-       save(read(args.url), args.save)
+       if len(data) == 0:
+           data = read(args.url)           
+       save(data, args.save)
    else:
        print('Use the -h or --help flags for help')
 

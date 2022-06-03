@@ -1,7 +1,15 @@
-id,author,title
-post1,user1,Create an Express server
-post2,user2,Learn AWS Lambda
-post3,user3,5 reasons to go serverless
-post4,user2,A guide to claudia.js
-post5,user2,Getting started with AWS API Gateway
-post6,user3,Writing a useful tutorial
+id,firstName,lastName,checkbox
+1,Denis,Mitchel,True
+2,Paul,Bergonistan,True
+3,Franklin,Roosvelt,True
+5,Ernestina,Pembroke,True
+6,Linus,Torvald,False
+7,Yezzham,Abdulkarim,False
+8,Welmary,Grocessian,True
+9,Karlson Edward,Frederick Janczuk,True
+10,Richard Alan,Gregory Trambaumann,True
+11,Phillip Antoine,Lecorbuzier Grigior,False
+12,Severin,Chartlenson,True
+14,Kiko,Permetto,True
+15,Lewis,Hamilton,True
+16,Jonas,Von Newman,False
