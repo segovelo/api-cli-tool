@@ -5,14 +5,17 @@ Created on Fri May 20 19:36:46 2022
 @author: sebas
 """
 from argparse import ArgumentParser
+#import argparse
 import csv
 import json
 from pprint import pprint
 import requests
+import sys
 
-
-def read():
-   fake_data_list_url = 'https://61004cc6bca46600171cf84a.mockapi.io/api-crud/v1/fakeData'
+def read(fake_data_list_url):
+   #fake_data_list_url = 'https://61004cc6bca46600171cf84a.mockapi.io/api-crud/v1/fakeData'
+   #fake_data_list_url = 'https://qxo3mb6xaa.execute-api.us-east-2.amazonaws.com/latest/posts'
+   #%fake_data_list_url = 'https://qxo3mb6xaa.execute-api.us-east-2.amazonaws.com/latest/users'
    response = requests.get(fake_data_list_url)
    return response.json()
 
@@ -21,11 +24,11 @@ def preview(data):
    
 def save(data):
    with open('fake_data.csv', 'w') as f:
-       field_names = ['id', 'firstName', 'lastName', 'checkbox']
+       field_names = ['id', 'author', 'title']
        writer = csv.DictWriter(f, fieldnames=field_names)
 
        writer.writeheader()
-       for row in data.json():
+       for row in data:
            writer.writerow(row)
            
            
@@ -34,15 +37,19 @@ if __name__ == '__main__':
    parser.add_argument('-r', '--read', action='store_true', help='Sends a GET request to the product API.')
    parser.add_argument('-p', '--preview', action='store_true', help='Shows us a preview of the data.')
    parser.add_argument('-s', '--save', action='store_true', help='Saves the response to a CSV file.')
-
+   parser.add_argument('-u', '--url', action='store', help='URL passed as argument')
 
    args = parser.parse_args()
-
+   
+   if args.url:
+       print("\nUrl passed as command line argument: % s" % args.url)
    if args.read:
-       read()
+       read(args.url)
    if args.preview:
-       preview(read())
+       preview(read(args.url))
    if args.save:
-       save
+       save(read(args.url))
    else:
        print('Use the -h or --help flags for help')
+
+
