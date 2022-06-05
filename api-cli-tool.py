@@ -5,11 +5,11 @@ Created on Fri May 20 19:36:46 2022
 @author: sebas
 """
 from argparse import ArgumentParser
-#import argparse
 import csv
 import json
 from pprint import pprint
 import requests
+import re
 
 def read(url):
    response = requests.get(url)
@@ -21,7 +21,9 @@ def preview(data):
    pprint(data)
    
 def save(data, file_name):
-    file_extension = file_name[-4:].rstrip()
+    file_name_1 = file_name.translate({ord(i): None for i in '!#@{}[]<>=+£%^&*()?|,;:/\\\'\"'})
+    file_name_2 = re.sub(r"\s+", "", file_name_1)
+    file_extension = file_name_2[-4:].rstrip()
     if file_extension == '.csv':
         save_csv(data, file_name)
     elif file_extension == '.txt':

@@ -1,0 +1,12 @@
+
+   #fake_data_list_url = 'https://61004cc6bca46600171cf84a.mockapi.io/api-crud/v1/fakeData'
+   #fake_data_list_url = 'https://qxo3mb6xaa.execute-api.us-east-2.amazonaws.com/latest/posts'
+   #fake_data_list_url = 'https://qxo3mb6xaa.execute-api.us-east-2.amazonaws.com/latest/users'
+
+
+    elif file_name[-4] == '.txt':
+        #with open(file_name, 'w') as f:  
+        for row in data:
+            for key, value in row.items():
+                f.write('%s: %s\n' % (key, value))
+
