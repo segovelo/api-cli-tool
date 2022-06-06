@@ -5,6 +5,7 @@ Created on Fri May 20 19:36:46 2022
 @author: sebas
 """
 from argparse import ArgumentParser
+#import argparse
 import csv
 import json
 from pprint import pprint
@@ -21,13 +22,14 @@ def preview(data):
    pprint(data)
    
 def save(data, file_name):
-    file_name_1 = file_name.translate({ord(i): None for i in '!#@{}[]<>=+£%^&*()?|,;:/\\\'\"'})
-    file_name_2 = re.sub(r"\s+", "", file_name_1)
-    file_extension = file_name_2[-4:].rstrip()
+    file_name = file_name.translate({ord(i): None for i in '!#@{}[]<>=+£$%^&*()?|,;:/\\\'\"'})
+    file_extension = file_name[-4:].rstrip()
     if file_extension == '.csv':
         save_csv(data, file_name)
     elif file_extension == '.txt':
         save_txt(data, file_name)
+    else:
+        save_default(data, file_name)
 
             
 def save_csv(data, file_name):
@@ -47,8 +49,9 @@ def save_txt(data, file_name):
             f.write('\t},')
         f.write('\n]')
     
+def save_default(data, file_name):      
+    save_txt(data, ''.join([file_name.rsplit('.',1)[0],'.txt']))
     
-            
 if __name__ == '__main__':
    parser = ArgumentParser(description='A command line tool for interacting with our API')
    parser.add_argument('-r', '--read', action='store_true', help='Sends a GET request to the product API.')
