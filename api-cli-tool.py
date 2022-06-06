@@ -45,9 +45,9 @@ def save_txt(data, file_name):
             f.write('\n  {\n')
             for key, value in row.items():
                 if key is list(row.keys())[-1]:
-                    f.write('\t%s: %s\n' % (key, value))
+                    f.write('\t\"%s\": \"%s\"\n' % (key, value))
                 else:
-                    f.write('\t%s: %s,\n' % (key, value))
+                    f.write('\t\"%s\": \"%s\",\n' % (key, value))
             if row is data[-1]:
                 f.write('  }\n')
             else:
