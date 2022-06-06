@@ -5,7 +5,6 @@ Created on Fri May 20 19:36:46 2022
 @author: sebas
 """
 from argparse import ArgumentParser
-#import argparse
 import csv
 import json
 from pprint import pprint
@@ -43,11 +42,17 @@ def save_txt(data, file_name):
     with open(file_name, 'w') as f:
         f.write('[')
         for row in data:
-            f.write('\n\t{\n')
+            f.write('\n  {\n')
             for key, value in row.items():
-                f.write('\t%s: %s,\n' % (key, value))
-            f.write('\t},')
-        f.write('\n]')
+                if key is list(row.keys())[-1]:
+                    f.write('\t%s: %s\n' % (key, value))
+                else:
+                    f.write('\t%s: %s,\n' % (key, value))
+            if row is data[-1]:
+                f.write('  }\n')
+            else:
+                f.write('  },')
+        f.write(']')
     
 def save_default(data, file_name):      
     save_txt(data, ''.join([file_name.rsplit('.',1)[0],'.txt']))

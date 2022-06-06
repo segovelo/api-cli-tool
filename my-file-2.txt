@@ -1,0 +1,86 @@
+[
+  {
+	id: 1,
+	firstName: Denis,
+	lastName: Mitchel,
+	checkbox: True
+  },
+  {
+	id: 2,
+	firstName: Paul,
+	lastName: Bergonistan,
+	checkbox: True
+  },
+  {
+	id: 3,
+	firstName: Franklin,
+	lastName: Roosvelt,
+	checkbox: True
+  },
+  {
+	id: 5,
+	firstName: Ernestina,
+	lastName: Pembroke,
+	checkbox: True
+  },
+  {
+	id: 6,
+	firstName: Linus,
+	lastName: Torvald,
+	checkbox: False
+  },
+  {
+	id: 7,
+	firstName: Yezzham,
+	lastName: Abdulkarim,
+	checkbox: False
+  },
+  {
+	id: 8,
+	firstName: Welmary,
+	lastName: Grocessian,
+	checkbox: True
+  },
+  {
+	id: 9,
+	firstName: Karlson Edward,
+	lastName: Frederick Janczuk,
+	checkbox: True
+  },
+  {
+	id: 10,
+	firstName: Richard Alan,
+	lastName: Gregory Trambaumann,
+	checkbox: True
+  },
+  {
+	id: 11,
+	firstName: Phillip Antoine,
+	lastName: Lecorbuzier Grigior,
+	checkbox: False
+  },
+  {
+	id: 12,
+	firstName: Severin,
+	lastName: Chartlenson,
+	checkbox: True
+  },
+  {
+	id: 14,
+	firstName: Kiko,
+	lastName: Permetto,
+	checkbox: True
+  },
+  {
+	id: 15,
+	firstName: Lewis,
+	lastName: Hamilton,
+	checkbox: True
+  },
+  {
+	id: 16,
+	firstName: Jonas,
+	lastName: Von Newman,
+	checkbox: False
+  }
+]

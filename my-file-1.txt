@@ -1,20 +1,20 @@
 [
-	{
+  {
 	id: user1,
 	firstName: John,
 	lastName: Doe,
-	location: Boston,
-	},
-	{
+	location: Boston
+  },
+  {
 	id: user2,
 	firstName: Jane,
 	lastName: Doe,
-	location: San Fransisco,
-	},
-	{
+	location: San Fransisco
+  },
+  {
 	id: user3,
 	firstName: Joe,
 	lastName: Smith,
-	location: New York,
-	},
+	location: New York
+  }
 ]
