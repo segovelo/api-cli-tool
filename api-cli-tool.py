@@ -13,12 +13,10 @@ import re
 
 def read(url):
    response = requests.get(url)
-   pprint(response.status_code)
-   pprint(response.text)
    return response.json()
 
 def preview(data):
-   pprint(data)
+   print(json.dumps(data, indent=2))
    
 def save(data, file_name):
     file_name = file_name.translate({ord(i): None for i in '!#@{}[]<>=+£$%^&*()?|,;:/\\\'\"'})
@@ -45,9 +43,9 @@ def save_txt(data, file_name):
             f.write('\n  {\n')
             for key, value in row.items():
                 if key is list(row.keys())[-1]:
-                    f.write('\t\"%s\": \"%s\"\n' % (key, value))
+                    f.write('    \"%s\": \"%s\"\n' % (key, value))
                 else:
-                    f.write('\t\"%s\": \"%s\",\n' % (key, value))
+                    f.write('    \"%s\": \"%s\",\n' % (key, value))
             if row is data[-1]:
                 f.write('  }\n')
             else:
