@@ -15,6 +15,10 @@ def read(url):
    response = requests.get(url)
    return response.json()
 
+def post(url, data):
+    response = requests.post(url, data)
+    return response
+    
 def preview(data):
    print(json.dumps(data, indent=2))
    
@@ -61,6 +65,8 @@ if __name__ == '__main__':
    parser.add_argument('-p', '--preview', action='store_true', help='Shows us a preview of the data.')
    parser.add_argument('-s', '--save', action='store', help='Saves the response to a CSV file.')
    parser.add_argument('-u', '--url', action='store', help='URL passed as argument')
+   parser.add_argument('-post', '--post', action='store', help='Send a POST request to the APi specified in -u argument')
+   
 
    args = parser.parse_args()
    data = []
