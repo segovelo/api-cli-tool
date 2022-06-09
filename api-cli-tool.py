@@ -15,8 +15,14 @@ def read(url):
    response = requests.get(url)
    return response.json()
 
-def post(url, data):
+def post(url):
+    data = {'firstName': 'Julio',
+            'lastName': 'Iglesias',
+            'checkbox': 'true'}
     response = requests.post(url, data)
+    # extracting response text 
+    pastebin_url = response.text
+    print("The pastebin URL is: %s" %pastebin_url)
     return response
     
 def preview(data):
@@ -65,7 +71,7 @@ if __name__ == '__main__':
    parser.add_argument('-p', '--preview', action='store_true', help='Shows us a preview of the data.')
    parser.add_argument('-s', '--save', action='store', help='Saves the response to a CSV file.')
    parser.add_argument('-u', '--url', action='store', help='URL passed as argument')
-   parser.add_argument('-post', '--post', action='store', help='Send a POST request to the APi specified in -u argument')
+   parser.add_argument('-post', '--post', action='store_true', help='Send a POST request to the APi specified in -u argument')
    
 
    args = parser.parse_args()
@@ -82,6 +88,8 @@ if __name__ == '__main__':
        if len(data) == 0:
            data = read(args.url)           
        save(data, args.save)
+   if args.post:
+       post(args.url)
    else:
        print('Use the -h or --help flags for help')
 
