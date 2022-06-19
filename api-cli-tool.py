@@ -15,7 +15,7 @@ def read(url):
    response = requests.get(url)
    return response.json()
 
-def post(url):
+def post(url, data):
     data = {'firstName': 'Julio',
             'lastName': 'Iglesias',
             'checkbox': 'true'}
@@ -72,6 +72,7 @@ if __name__ == '__main__':
    parser.add_argument('-s', '--save', action='store', help='Saves the response to a CSV file.')
    parser.add_argument('-u', '--url', action='store', help='URL passed as argument')
    parser.add_argument('-post', '--post', action='store_true', help='Send a POST request to the APi specified in -u argument')
+   parser.add_argument('-d', '--data', action='store', help='data passed as argument')
    
 
    args = parser.parse_args()
@@ -89,7 +90,7 @@ if __name__ == '__main__':
            data = read(args.url)           
        save(data, args.save)
    if args.post:
-       post(args.url)
+       post(args.url, args.data)
    else:
        print('Use the -h or --help flags for help')
 
