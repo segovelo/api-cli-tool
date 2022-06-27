@@ -3,6 +3,9 @@
    #fake_data_list_url = 'https://qxo3mb6xaa.execute-api.us-east-2.amazonaws.com/latest/posts'
    #fake_data_list_url = 'https://qxo3mb6xaa.execute-api.us-east-2.amazonaws.com/latest/users'
 
+   Pass argument as:
+   -d  "{\"firstName\":\"William\", \"lastName\":\"Tell\", \"checkbox\":\"false\"}" 
+
 
     elif file_name[-4] == '.txt':
         #with open(file_name, 'w') as f:  

@@ -16,10 +16,10 @@ def read(url):
    return response.json()
 
 def post(url, data):
-    data = {'firstName': 'Julio',
-            'lastName': 'Iglesias',
-            'checkbox': 'true'}
-    response = requests.post(url, data)
+    # Pass argument
+    # -d  "{\"firstName\":\"William\", \"lastName\":\"Tell\", \"checkbox\":\"false\"}" 
+    data_json = json.loads(data)
+    response = requests.post(url, data_json)
     # extracting response text 
     pastebin_url = response.text
     print("The pastebin URL is: %s" %pastebin_url)
@@ -77,6 +77,7 @@ if __name__ == '__main__':
 
    args = parser.parse_args()
    data = []
+   postData = []
    if args.url:
        print("\nUrl passed as command line argument: % s" % args.url)
    if args.read:
